@@ -8,7 +8,8 @@ class Counter extends Component
     {
         return(
             <div>
-                <button className='btn' >Increment</button>
+                <h1>{this.props.ctr}</h1>
+                <button className='btn' onClick={this.props.onIncrementCounter} >Increment</button>
                 <button className='btn'>Increment By</button>
                 <button className='btn'>Decrement By</button>
             </div>
@@ -21,4 +22,11 @@ const mapStateToProps = state =>{
         ctr: state.counter
     }
 }
-export default connect(mapStateToProps)(Counter)
+const mapDispatchtoProps = dispatch => {
+    return {
+        onIncrementCounter: ()=> dispatch({
+            type: 'INCREMENT'
+        })
+    };
+}
+export default connect(mapStateToProps, mapDispatchtoProps)(Counter);
